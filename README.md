@@ -1,75 +1,88 @@
-# 🏎️ Embedded System 2026 - نظام التحكم الذكي عبر البلوتوث
+# 🏎️ Embedded System 2026
+### Professional Bluetooth IOT Control Interface
 
-هذا المشروع هو تطبيق Flutter احترافي مصمم للتحكم في المركبات (RC Cars) أو أجهزة الـ IOT عبر تقنية البلوتوث الكلاسيكي (Bluetooth Classic). يتميز التطبيق بتصميم عصري (Dark Mode) وواجهة مستخدم تفاعلية وسلسة.
-
----
-
-## 🎨 الهوية البصرية والتصميم (Design & Aesthetics)
-
-تم اختيار الألوان والخطوط بعناية لتعطي انطباعاً تقنياً واحترافياً:
-
-### 🌑 لوحة الألوان (Color Palette)
-- **اللون الأساسي (Primary):** `#4FC3F7` (أزرق سماوي فاتح) - يستخدم للأزرار النشطة، الأيقونات، وحالة الاتصال.
-- **الخلفية (Background):** `#0A0A0A` (أسود عميق) - لتقليل استهلاك البطارية وتوفير راحة للعين.
-- **الأسطح (Surface):** `#141414` (رمادي غامق جداً) - يستخدم للبطاقات (Cards) والقوائم المنسدلة للتمييز عن الخلفية.
-- **النصوص:** تتراوح بين الأبيض النقي للعناوين، والأبيض الشفاف (`white38`) للنصوص الثانوية والوصفية.
-
-### 🔡 الخطوط (Typography)
-- يتم استخدام خط **Google Fonts: Roboto Mono** بشكل أساسي في المشروع، وهو خط "Monospace" يعطي طابعاً هندسياً وبرمجياً يتناسب مع تطبيقات التحكم والأتمتة.
+![App Mockup](file:///C:/Users/momen/.gemini/antigravity/brain/0de44d7f-35d6-4e6c-9550-55c0fda9599a/app_ui_mockup_1778616041210.png)
 
 ---
 
-## 📂 هيكل وترتيب الملفات (Project Structure)
+## 🌟 Overview
+**Embedded System 2026** is an advanced engineering solution designed to control embedded systems and smart robotic vehicles via Bluetooth technology. Developed with **Flutter**, the application focuses on three core pillars: **Ultra-Performance**, **Unmatched Stability**, and a **Premium User Experience (UX)**.
 
-تم تنظيم المشروع ليكون قابلاً للتوسع (Scalable) وسهل الصيانة:
+This is not just a controller; it is a high-fidelity engineering interface designed to provide precise, real-time command execution for mechatronic systems.
+
+---
+
+## ✨ Key Features
+
+- **🕹️ Advanced Directional Control:** A large, ergonomically designed D-Pad ensuring instantaneous response and tactile-like visual feedback.
+- **🚀 Dynamic Speed Control:** An interactive speed level bar mimicking modern smartphone interfaces with real-time visual progress.
+- **⚙️ Smart Transmission System:** 4 switchable gear levels for immediate power adjustment according to terrain and operational needs.
+- **🛡️ Cruise Control System:** Integrated latch-mode for continuous forward movement with an intelligent emergency stop system.
+- **📡 Low-Latency Protocol:** Highly optimized data transmission engine ensuring minimum latency between the mobile interface and the target hardware.
+- **🌓 Dark Premium Design:** A sleek "Glassmorphism" based UI with carefully curated gradients, optimized for OLED displays and visual comfort.
+
+---
+
+## 🎨 Design Philosophy (UI/UX)
+
+The interface is engineered to be both **Functional & Aesthetic**:
+- **Color Palette:** Deep Black (`#0A0A0A`) background to minimize distraction, paired with Electric Blue (`#4FC3F7`) for high-contrast interactive elements.
+- **Typography:** Utilizing **Roboto Mono** to maintain a precise, technical, and engineering-centric visual identity.
+- **Visual Feedback:** Micro-animations and state changes provide immediate confirmation for every command sent.
+
+---
+
+## 🏗️ Technical Architecture
+
+The project adheres to a **Clean & Modular Structure**, ensuring scalability and ease of maintenance:
 
 ```text
 lib/
-├── constants/          # الثوابت والقيم التي لا تتغير
-│   └── bt_commands.dart      # تعريف أوامر البلوتوث (F, B, L, R, S...)
-├── providers/          # إدارة حالة التطبيق (State Management)
-│   └── controller_provider.dart  # معالجة منطق التحكم وتبديل الأوضاع
-├── services/           # الخدمات الخارجية
-│   └── bluetooth_service.dart    # المسؤول عن الاتصال والبحث عن الأجهزة
-├── screens/            # الشاشات الرئيسية
-│   └── controller_screen.dart    # الواجهة الرئيسية للتحكم
-├── widgets/            # المكونات الصغيرة والقابلة لإعادة الاستخدام
-│   ├── connection_header.dart    # شريط حالة الاتصال العلوي
-│   ├── dpad_widget.dart         # لوحة التحكم الاتجاهية (D-Pad)
-│   ├── gear_selector.dart       # اختيار السرعات (Gears 1-4)
-│   ├── mode_selector.dart       # تبديل أوضاع القيادة (Manual/Auto)
-│   └── speed_trim_widget.dart   # أزرار ضبط السرعة الدقيق
-└── main.dart           # نقطة انطلاق التطبيق وإعدادات الثيم والاتجاه
+├── 📁 constants/   # System constants and Command Protocol definitions
+├── 📁 providers/   # State Management and Business Logic (Provider pattern)
+├── 📁 services/    # Communication services and Hardware Abstraction (Bluetooth Engine)
+├── 📁 screens/     # Main UI layouts and screen definitions
+├── 📁 widgets/     # Reusable Custom UI Components
+└── 📄 main.dart    # System entry point and global configuration
 ```
 
 ---
 
-## 🛠️ المكونات التقنية (Tech Stack)
+## 📡 Communication Protocol
 
-1.  **Flutter SDK:** الإطار الأساسي لبناء التطبيق.
-2.  **Provider:** لإدارة الحالة (State Management) وضمان تحديث الواجهة بكفاءة عند تغير حالة الاتصال أو الأوامر.
-3.  **Bluetooth Classic:** المكتبة المستخدمة للتواصل مع وحدات البلوتوث مثل HC-05 أو HC-06.
-4.  **Google Fonts:** لتوفير تجربة بصرية متميزة باستخدام خطوط حديثة.
+The application acts as a **Master Node**, transmitting ASCII-encoded characters, making it universally compatible with any microcontroller (Arduino, ESP32, STM32, etc.):
 
----
-
-## 🕹️ كيفية العمل ومنطق التحكم
-
-### 📡 أوامر البلوتوث (Protocol)
-التطبيق يرسل أحرفاً نصية بسيطة عبر البلوتوث لسهولة معالجتها في الطرف الآخر (مثل Arduino أو ESP32):
-- **الاتجاهات:** `F` (للأمام)، `B` (للخلف)، `L` (يسار)، `R` (يمين)، `S` (توقف).
-- **السرعات:** `+` (زيادة)، `-` (نقصان)، والأرقام `1-4` للسرعات المحددة.
-- **الأوضاع:** `M` (يدوي)، `A` (تلقائي)، `X` (وضع الخبير).
-
-### 📱 واجهة المستخدم
-- **التحكم الاتجاهي:** D-Pad تفاعلي يرسل الأوامر بمجرد الضغط ويتوقف عند الإفلات.
-- **اختيار السرعة:** أزرار مخصصة للتبديل السريع بين السرعات.
-- **أوضاع القيادة:** عند تفعيل وضع "Auto"، يتم تعتيم عناصر التحكم اليدوي لمنع التداخل، ويظهر كارت معلومات يوضح الوضع الحالي.
+| Command | Function | Command | Function |
+| :--- | :--- | :--- | :--- |
+| `F` | Move Forward | `1` | Speed Gear 1 |
+| `B` | Move Backward | `2` | Speed Gear 2 |
+| `L` | Turn Left | `3` | Speed Gear 3 |
+| `R` | Turn Right | `4` | Speed Gear 4 |
+| `S` | Full Stop | `+` / `-` | Fine Speed Tuning |
+| `M` | Manual Mode | `A` | Auto-Pilot Mode |
 
 ---
 
-## 🚀 التشغيل (Setup)
-1. تأكد من تثبيت Flutter على جهازك.
-2. قم بتشغيل `flutter pub get` لتحميل المكتبات.
-3. قم بإقران (Pair) جهاز البلوتوث الخاص بالمركبة مع هاتفك من إعدادات النظام أولاً.
-4. افتح التطبيق، اضغط على **CONNECT**، اختر جهازك، وابدأ التحكم!
+## 🛠️ Tech Stack
+
+- **Framework:** Flutter SDK (Stable Channel)
+- **State Management:** Provider (Efficient reactive data flow)
+- **Connectivity:** Bluetooth Classic API
+- **Styling:** Custom Flutter UI with Google Fonts integration
+
+---
+
+## 🚀 Getting Started
+
+1. **Environment:** Install Flutter SDK and your preferred IDE (VS Code / Android Studio).
+2. **Dependencies:** Run `flutter pub get` in the project root.
+3. **Pairing:** Pair your mobile device with the Bluetooth module (HC-05/HC-06) via system settings.
+4. **Execution:** Launch the app, tap **TAP TO CONNECT**, and take command of your hardware.
+
+---
+
+## 👨‍💻 Developer
+**Momen salman**
+
+---
+*Developed as a benchmark for professional integration between software interfaces and embedded hardware systems.*
