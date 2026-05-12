@@ -78,6 +78,11 @@ class BluetoothService extends ChangeNotifier {
 
   // ─── Send Command ─────────────────────────────────────────────────────────────
   void sendCommand(String cmd, {bool throttle = false}) {
+    // We update the last command and notify UI even if disconnected 
+    // so the user can see what the app is TRYING to send.
+    _lastSentCommand = cmd;
+    notifyListeners();
+
     if (!isConnected) return;
 
     if (throttle) {
@@ -92,8 +97,6 @@ class BluetoothService extends ChangeNotifier {
 
     try {
       _plugin.write(cmd);
-      _lastSentCommand = cmd;
-      notifyListeners();
     } catch (_) {
       _onDisconnected();
     }

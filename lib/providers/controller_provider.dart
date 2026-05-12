@@ -46,9 +46,13 @@ class ControllerProvider extends ChangeNotifier {
 
   DriveMode _mode = DriveMode.manual;
   int _gear = 1;
+  int _speedTrim = 5;
+  bool _isAutoForward = false;
 
   DriveMode get mode => _mode;
   int get gear => _gear;
+  int get speedTrim => _speedTrim;
+  bool get isAutoForward => _isAutoForward;
 
   // ─── Mode Selection ──────────────────────────────────────────────────────────
   void setMode(DriveMode mode) {
@@ -71,6 +75,39 @@ class ControllerProvider extends ChangeNotifier {
   }
 
   // ─── Movement / Speed ────────────────────────────────────────────────────────
-  void send(String cmd) => btService.sendCommand(cmd, throttle: true);
-  void sendImmediate(String cmd) => btService.sendCommand(cmd);
+  void toggleAutoForward() {
+    _isAutoForward = !_isAutoForward;
+    if (_isAutoForward) {
+      btService.sendCommand(BtCommands.forward);
+    } else {
+      btService.sendCommand(BtCommands.stop);
+    }
+    notifyListeners();
+  }
+
+  void send(String cmd) {
+    // If we are in auto-forward and user presses another movement key, 
+    // we should probably stop auto-forward to prevent conflicts.
+    if (_isAutoForward && cmd != BtCommands.forward && cmd != BtCommands.stop) {
+      _isAutoForward = false;
+      notifyListeners();
+    }
+    
+    if (cmd == BtCommands.speedUp && _speedTrim < 10) {
+      _speedTrim++;
+      notifyListeners();
+    } else if (cmd == BtCommands.speedDown && _speedTrim > 0) {
+      _speedTrim--;
+      notifyListeners();
+    }
+    btService.sendCommand(cmd, throttle: true);
+  }
+
+  void sendImmediate(String cmd) {
+    if (_isAutoForward && cmd == BtCommands.stop) {
+      _isAutoForward = false;
+      notifyListeners();
+    }
+    btService.sendCommand(cmd);
+  }
 }

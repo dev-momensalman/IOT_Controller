@@ -36,7 +36,7 @@ class RcControllerApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'RC Controller',
+        title: 'Embedded System 2026',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           brightness: Brightness.dark,

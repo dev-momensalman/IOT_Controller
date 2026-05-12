@@ -10,65 +10,83 @@ class SpeedTrimWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ctrl = context.read<ControllerProvider>();
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      decoration: BoxDecoration(
-        color: const Color(0xFF181818),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: Colors.white.withOpacity(0.07)),
-      ),
-      child: Row(
-        children: [
-          _SpeedBtn(
-            icon: Icons.remove_rounded,
-            onTap: () => ctrl.send(BtCommands.speedDown),
+    return Consumer<ControllerProvider>(
+      builder: (context, ctrl, _) {
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          decoration: BoxDecoration(
+            color: const Color(0xFF141414),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.2),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
           ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "SPEED TRIM",
-                  style: GoogleFonts.robotoMono(
-                    fontSize: 10,
-                    color: Colors.white30,
-                    letterSpacing: 2,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Container(
-                  height: 4,
-                  margin: const EdgeInsets.symmetric(horizontal: 16),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(2),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 5,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white.withValues(alpha: 0.38),
-                            borderRadius: BorderRadius.circular(2),
-                          ),
-                        ),
+          child: Row(
+            children: [
+              _SpeedBtn(
+                icon: Icons.remove_rounded,
+                onTap: () => ctrl.send(BtCommands.speedDown),
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "SPEED LEVEL",
+                      style: GoogleFonts.robotoMono(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white24,
+                        letterSpacing: 2,
                       ),
-                      Expanded(flex: 5, child: const SizedBox()),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
+                      height: 6,
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.05),
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+                      child: Stack(
+                        children: [
+                          AnimatedContainer(
+                            duration: const Duration(milliseconds: 200),
+                            curve: Curves.easeOutCubic,
+                            width: (MediaQuery.of(context).size.width - 200) *
+                                (ctrl.speedTrim / 10),
+                            decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                colors: [Color(0xFF4FC3F7), Color(0xFF29B6F6)],
+                              ),
+                              borderRadius: BorderRadius.circular(3),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: const Color(0xFF4FC3F7).withValues(alpha: 0.4),
+                                  blurRadius: 6,
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              _SpeedBtn(
+                icon: Icons.add_rounded,
+                onTap: () => ctrl.send(BtCommands.speedUp),
+              ),
+            ],
           ),
-          _SpeedBtn(
-            icon: Icons.add_rounded,
-            onTap: () => ctrl.send(BtCommands.speedUp),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

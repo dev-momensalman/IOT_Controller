@@ -13,8 +13,8 @@ class DpadWidget extends StatelessWidget {
     return Consumer<ControllerProvider>(
       builder: (context, ctrl, _) {
         return SizedBox(
-          width: 240,
-          height: 240,
+          width: 280,
+          height: 280,
           child: Stack(
             alignment: Alignment.center,
             children: [
@@ -74,8 +74,11 @@ class DpadWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              // Stop (center)
-              _StopButton(onTap: () => ctrl.sendImmediate(BtCommands.stop)),
+              // Auto-Forward / Stop (center)
+              _StopButton(
+                isActive: ctrl.isAutoForward,
+                onTap: () => ctrl.toggleAutoForward(),
+              ),
             ],
           ),
         );
@@ -148,8 +151,8 @@ class _DpadButtonState extends State<_DpadButton>
         scale: _scale,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 80),
-          width: 72,
-          height: 72,
+          width: 86,
+          height: 86,
           decoration: BoxDecoration(
             color: _pressed
                 ? const Color(0xFF4FC3F7).withOpacity(0.25)
@@ -174,7 +177,7 @@ class _DpadButtonState extends State<_DpadButton>
           child: Icon(
             widget.icon,
             color: _pressed ? const Color(0xFF4FC3F7) : Colors.white70,
-            size: 36,
+            size: 44,
           ),
         ),
       ),
@@ -184,8 +187,9 @@ class _DpadButtonState extends State<_DpadButton>
 
 // ─── Stop Button (Center) ──────────────────────────────────────────────────────
 class _StopButton extends StatefulWidget {
+  final bool isActive;
   final VoidCallback onTap;
-  const _StopButton({required this.onTap});
+  const _StopButton({required this.isActive, required this.onTap});
 
   @override
   State<_StopButton> createState() => _StopButtonState();
@@ -235,8 +239,8 @@ class _StopButtonState extends State<_StopButton>
         scale: _scale,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 80),
-          width: 62,
-          height: 62,
+          width: 74,
+          height: 74,
           decoration: BoxDecoration(
             color: _pressed
                 ? const Color(0xFFEF4444)
@@ -251,10 +255,10 @@ class _StopButtonState extends State<_StopButton>
               ),
             ],
           ),
-          child: const Icon(
-            Icons.stop_rounded,
+          child: Icon(
+            widget.isActive ? Icons.pause_rounded : Icons.play_arrow_rounded,
             color: Colors.white,
-            size: 32,
+            size: 38,
           ),
         ),
       ),

@@ -199,11 +199,17 @@ class _ControllerScreenState extends State<ControllerScreen> {
                           ),
                         ),
 
-                        // ── Auto/Expert info card ──
-                        if (ctrl.mode != DriveMode.manual) ...[
-                          const SizedBox(height: 20),
-                          _ModeInfoCard(mode: ctrl.mode),
-                        ],
+                        // ── Developer Signature ──
+                        const SizedBox(height: 18),
+                        Text(
+                          "TA. YOUSSEF ELSHEHEIMY",
+                          style: GoogleFonts.robotoMono(
+                            fontSize: 15,
+                            color: Colors.white54,
+                            letterSpacing: 2,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                         
                         const Spacer(flex: 1),
                       ],
