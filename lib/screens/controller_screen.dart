@@ -135,7 +135,11 @@ class _ControllerScreenState extends State<ControllerScreen> {
             child: Column(
               children: [
                 // ── TOP: BT status header ──
-                const ConnectionHeader(),
+                ConnectionHeader(
+                  onActionPressed: context.read<BluetoothService>().isConnected
+                      ? () async => await context.read<BluetoothService>().disconnect()
+                      : _showDevicePicker,
+                ),
 
                 // ── Main flexible content ──
                 Expanded(
@@ -143,7 +147,7 @@ class _ControllerScreenState extends State<ControllerScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                     child: Column(
                       children: [
-                        const Spacer(),
+                        const Spacer(flex: 1),
 
                         // ── CENTER: D-Pad ──
                         Center(
@@ -155,30 +159,45 @@ class _ControllerScreenState extends State<ControllerScreen> {
                           ),
                         ),
 
-                        const Spacer(flex: 2),
+                        const Spacer(flex: 1),
 
-                        // ── Speed Trim ──
-                        AnimatedOpacity(
-                          opacity:
-                              ctrl.mode == DriveMode.manual ? 1.0 : 0.35,
-                          duration: const Duration(milliseconds: 300),
-                          child: const SpeedTrimWidget(),
+                        // ── BOTTOM CONTROLS GROUP ──
+                        Container(
+                          padding: const EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.03),
+                            borderRadius: BorderRadius.circular(24),
+                            border: Border.all(
+                              color: Colors.white.withOpacity(0.05),
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              // ── Speed Trim ──
+                              AnimatedOpacity(
+                                opacity:
+                                    ctrl.mode == DriveMode.manual ? 1.0 : 0.35,
+                                duration: const Duration(milliseconds: 300),
+                                child: const SpeedTrimWidget(),
+                              ),
+
+                              const SizedBox(height: 24),
+
+                              // ── Gear Select ──
+                              AnimatedOpacity(
+                                opacity:
+                                    ctrl.mode == DriveMode.manual ? 1.0 : 0.35,
+                                duration: const Duration(milliseconds: 300),
+                                child: const GearSelector(),
+                              ),
+
+                              const SizedBox(height: 24),
+
+                              // ── Mode Select ──
+                              const ModeSelector(),
+                            ],
+                          ),
                         ),
-
-                        const SizedBox(height: 20),
-
-                        // ── Gear Select ──
-                        AnimatedOpacity(
-                          opacity:
-                              ctrl.mode == DriveMode.manual ? 1.0 : 0.35,
-                          duration: const Duration(milliseconds: 300),
-                          child: const GearSelector(),
-                        ),
-
-                        const SizedBox(height: 20),
-
-                        // ── Mode Select ──
-                        const ModeSelector(),
 
                         // ── Auto/Expert info card ──
                         if (ctrl.mode != DriveMode.manual) ...[
@@ -186,7 +205,7 @@ class _ControllerScreenState extends State<ControllerScreen> {
                           _ModeInfoCard(mode: ctrl.mode),
                         ],
                         
-                        const Spacer(),
+                        const Spacer(flex: 1),
                       ],
                     ),
                   ),
@@ -195,37 +214,6 @@ class _ControllerScreenState extends State<ControllerScreen> {
             ),
           ),
 
-          // ── FAB: Connect / Disconnect ──
-          floatingActionButton: Consumer<BluetoothService>(
-            builder: (_, bt, __) => FloatingActionButton.extended(
-              onPressed: bt.isConnected
-                  ? () async => await bt.disconnect()
-                  : _showDevicePicker,
-              backgroundColor: bt.isConnected
-                  ? const Color(0xFF1E1E1E)
-                  : const Color(0xFF4FC3F7),
-              foregroundColor: bt.isConnected
-                  ? const Color(0xFF4FC3F7)
-                  : const Color(0xFF0A0A0A),
-              icon: _loading
-                  ? const SizedBox(
-                      width: 18,
-                      height: 18,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
-                  : Icon(bt.isConnected
-                      ? Icons.bluetooth_connected_rounded
-                      : Icons.bluetooth_searching_rounded),
-              label: Text(
-                bt.isConnected ? "DISCONNECT" : "CONNECT",
-                style: GoogleFonts.robotoMono(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
-                  letterSpacing: 1.2,
-                ),
-              ),
-            ),
-          ),
         );
       },
     );

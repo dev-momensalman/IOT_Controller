@@ -6,7 +6,8 @@ import '../services/bluetooth_service.dart';
 
 /// Top status bar: connection dot, device name, current mode badge, last command
 class ConnectionHeader extends StatelessWidget {
-  const ConnectionHeader({super.key});
+  final VoidCallback onActionPressed;
+  const ConnectionHeader({super.key, required this.onActionPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -22,82 +23,121 @@ class ConnectionHeader extends StatelessWidget {
           ),
           child: Row(
             children: [
-              // ── BT State dot + device name ──
-              _StatusDot(connected: bt.isConnected),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              // ── BT State dot + action ──
+              GestureDetector(
+                onTap: onActionPressed,
+                child: Stack(
+                  alignment: Alignment.center,
                   children: [
-                    Text(
-                      bt.isConnected ? "CONNECTED" : "DISCONNECTED",
-                      style: GoogleFonts.robotoMono(
-                        fontSize: 10,
-                        fontWeight: FontWeight.w600,
-                        color: bt.isConnected
-                            ? const Color(0xFF4FC3F7)
-                            : const Color(0xFF666666),
-                        letterSpacing: 1.5,
+                    _StatusDot(connected: bt.isConnected),
+                    if (!bt.isConnected)
+                      AnimatedContainer(
+                        duration: const Duration(seconds: 1),
+                        curve: Curves.easeInOut,
+                        width: 24,
+                        height: 24,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: const Color(0xFF4FC3F7).withOpacity(0.3),
+                            width: 1,
+                          ),
+                        ),
                       ),
-                    ),
-                    Text(
-                      bt.deviceName,
-                      style: GoogleFonts.robotoMono(
-                        fontSize: 12,
-                        color: Colors.white70,
-                      ),
-                    ),
                   ],
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: InkWell(
+                  onTap: onActionPressed,
+                  borderRadius: BorderRadius.circular(4),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            bt.isConnected ? "CONNECTED" : "DISCONNECTED",
+                            style: GoogleFonts.robotoMono(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w600,
+                              color: bt.isConnected
+                                  ? const Color(0xFF4FC3F7)
+                                  : const Color(0xFF666666),
+                              letterSpacing: 1.5,
+                            ),
+                          ),
+                          if (!bt.isConnected) ...[
+                            const SizedBox(width: 6),
+                            const Icon(Icons.bluetooth_searching_rounded,
+                                size: 12, color: Color(0xFF4FC3F7)),
+                          ],
+                        ],
+                      ),
+                      Text(
+                        bt.isConnected ? bt.deviceName : "TAP TO CONNECT",
+                        style: GoogleFonts.robotoMono(
+                          fontSize: 12,
+                          color: bt.isConnected ? Colors.white70 : const Color(0xFF4FC3F7),
+                          fontWeight: bt.isConnected ? FontWeight.normal : FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
 
               // ── Current Mode Badge ──
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF4FC3F7).withOpacity(0.15),
-                  borderRadius: BorderRadius.circular(6),
-                  border: Border.all(
-                    color: const Color(0xFF4FC3F7).withOpacity(0.4),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF4FC3F7).withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      "MODE",
+                      style: GoogleFonts.robotoMono(
+                        fontSize: 7,
+                        color: const Color(0xFF4FC3F7).withOpacity(0.7),
+                        letterSpacing: 1,
+                      ),
+                    ),
                   ),
-                ),
-                child: Text(
-                  "CURRENT MODE",
-                  style: GoogleFonts.robotoMono(
-                    fontSize: 8,
-                    color: const Color(0xFF4FC3F7),
-                    letterSpacing: 1.2,
+                  const SizedBox(height: 4),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF4FC3F7).withOpacity(0.15),
+                      borderRadius: BorderRadius.circular(6),
+                      border: Border.all(
+                        color: const Color(0xFF4FC3F7).withOpacity(0.4),
+                      ),
+                    ),
+                    child: Text(
+                      ctrl.mode.label,
+                      style: GoogleFonts.robotoMono(
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                        color: const Color(0xFF4FC3F7),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF4FC3F7).withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(6),
-                  border: Border.all(color: const Color(0xFF4FC3F7)),
-                ),
-                child: Text(
-                  ctrl.mode.label,
-                  style: GoogleFonts.robotoMono(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                    color: const Color(0xFF4FC3F7),
-                    letterSpacing: 1,
-                  ),
-                ),
+                ],
               ),
 
               // ── Last Command ──
-              const SizedBox(width: 12),
+              const SizedBox(width: 16),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    "LAST CMD",
+                    "LAST",
                     style: GoogleFonts.robotoMono(
-                      fontSize: 8,
+                      fontSize: 7,
                       color: Colors.white30,
                       letterSpacing: 1,
                     ),
