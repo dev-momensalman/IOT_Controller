@@ -137,14 +137,18 @@ class _ControllerScreenState extends State<ControllerScreen> {
                 // ── TOP: BT status header ──
                 ConnectionHeader(
                   onActionPressed: context.read<BluetoothService>().isConnected
-                      ? () async => await context.read<BluetoothService>().disconnect()
+                      ? () async =>
+                            await context.read<BluetoothService>().disconnect()
                       : _showDevicePicker,
                 ),
 
                 // ── Main flexible content ──
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 16,
+                    ),
                     child: Column(
                       children: [
                         const Spacer(flex: 1),
@@ -152,8 +156,7 @@ class _ControllerScreenState extends State<ControllerScreen> {
                         // ── CENTER: D-Pad ──
                         Center(
                           child: AnimatedOpacity(
-                            opacity:
-                                ctrl.mode == DriveMode.manual ? 1.0 : 0.35,
+                            opacity: ctrl.mode == DriveMode.manual ? 1.0 : 0.35,
                             duration: const Duration(milliseconds: 300),
                             child: const DpadWidget(),
                           ),
@@ -175,8 +178,9 @@ class _ControllerScreenState extends State<ControllerScreen> {
                             children: [
                               // ── Speed Trim ──
                               AnimatedOpacity(
-                                opacity:
-                                    ctrl.mode == DriveMode.manual ? 1.0 : 0.35,
+                                opacity: ctrl.mode == DriveMode.manual
+                                    ? 1.0
+                                    : 0.35,
                                 duration: const Duration(milliseconds: 300),
                                 child: const SpeedTrimWidget(),
                               ),
@@ -185,8 +189,9 @@ class _ControllerScreenState extends State<ControllerScreen> {
 
                               // ── Gear Select ──
                               AnimatedOpacity(
-                                opacity:
-                                    ctrl.mode == DriveMode.manual ? 1.0 : 0.35,
+                                opacity: ctrl.mode == DriveMode.manual
+                                    ? 1.0
+                                    : 0.35,
                                 duration: const Duration(milliseconds: 300),
                                 child: const GearSelector(),
                               ),
@@ -201,16 +206,7 @@ class _ControllerScreenState extends State<ControllerScreen> {
 
                         // ── Developer Signature ──
                         const SizedBox(height: 18),
-                        Text(
-                          "TA. YOUSSEF ELSHEHEIMY",
-                          style: GoogleFonts.robotoMono(
-                            fontSize: 15,
-                            color: Colors.white54,
-                            letterSpacing: 2,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        
+
                         const Spacer(flex: 1),
                       ],
                     ),
@@ -219,7 +215,6 @@ class _ControllerScreenState extends State<ControllerScreen> {
               ],
             ),
           ),
-
         );
       },
     );
