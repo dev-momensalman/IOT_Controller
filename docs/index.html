@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy - Arduino Bluetooth Car (RC)</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --primary: #38bdf8;
+      --accent: #0ea5e9;
+      --border: #334155;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .app-badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--primary);
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .updated-date {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    h2 {
+      font-size: 1.35rem;
+      color: var(--primary);
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      border-left: 4px solid var(--primary);
+      padding-left: 0.75rem;
+    }
+    p, ul {
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    strong {
+      color: #fff;
+    }
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .highlight-box {
+      background: rgba(14, 165, 233, 0.08);
+      border-left: 4px solid var(--accent);
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+    .lang-switcher {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+    .lang-btn {
+      background: #334155;
+      color: #fff;
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .lang-btn.active {
+      background: var(--primary);
+      color: #0f172a;
+    }
+    .lang-section {
+      display: none;
+    }
+    .lang-section.active {
+      display: block;
+    }
+    .rtl {
+      direction: rtl;
+      text-align: right;
+    }
+    .rtl h2 {
+      border-left: none;
+      border-right: 4px solid var(--primary);
+      padding-left: 0;
+      padding-right: 0.75rem;
+    }
+    .rtl ul {
+      padding-left: 0;
+      padding-right: 1.5rem;
+    }
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="switchLang('en')">English</button>
+      <button class="lang-btn" onclick="switchLang('ar')">العربية</button>
+    </div>
+
+    <!-- ENGLISH SECTION -->
+    <div id="lang-en" class="lang-section active">
+      <div class="header">
+        <span class="app-badge">Arduino Bluetooth Car (RC)</span>
+        <h1>Privacy Policy</h1>
+        <p class="updated-date">Last Updated: October 1, 2026</p>
+      </div>
+
+      <div class="highlight-box">
+        <strong>Summary:</strong> <strong>Arduino Bluetooth Car (RC)</strong> is designed with privacy at its core. 
+        We do <strong>not</strong> collect, store, sell, or transmit any personally identifiable information (PII). All Bluetooth communication occurs strictly locally between your mobile device and your hardware module.
+      </div>
+
+      <h2>1. Introduction</h2>
+      <p>
+        This Privacy Policy explains how <strong>Momen Salman</strong> ("we", "us", or "our") handles information in connection with the mobile application 
+        <strong>Arduino Bluetooth Car (RC)</strong> (Package: <code>com.rccontroller.rc_controller</code>).
+      </p>
+
+      <h2>2. Information Collection and Storage</h2>
+      <p>
+        Our application does <strong>not collect, record, or transmit</strong> any personal user data. We do not require account registration, usernames, passwords, or personal details to use any feature of the app.
+      </p>
+
+      <h2>3. Device Permissions and Why We Need Them</h2>
+      <p>To function as a wireless controller for your robotics and embedded hardware projects, the app requests the following Android permissions:</p>
+      <ul>
+        <li>
+          <strong>Bluetooth Permissions (<code>BLUETOOTH</code>, <code>BLUETOOTH_ADMIN</code>, <code>BLUETOOTH_CONNECT</code>, <code>BLUETOOTH_SCAN</code>):</strong><br />
+          Required exclusively to discover, pair with, and transmit real-time serial directional commands (e.g., Forward, Backward, Steer, Speed) to your Bluetooth module (such as HC-05, HC-06, ESP32, or HM-10). No communication ever leaves your local Bluetooth range.
+        </li>
+        <li>
+          <strong>Location Permission (<code>ACCESS_FINE_LOCATION</code>, <code>ACCESS_COARSE_LOCATION</code> on Android 11 and older):</strong><br />
+          On Android versions prior to Android 12 (API 31), Google's Android operating system requires apps to request location access in order to perform Bluetooth discovery. <strong>Our application does not track, determine, record, or share your physical location under any circumstances.</strong>
+        </li>
+        <li>
+          <strong>Internet &amp; Network State (<code>INTERNET</code>, <code>ACCESS_NETWORK_STATE</code>):</strong><br />
+          Used solely for network connectivity checks and to display non-intrusive advertisements if supported.
+        </li>
+      </ul>
+
+      <h2>4. Third-Party Services &amp; Advertising</h2>
+      <p>
+        The app may utilize third-party SDKs such as Google AdMob to display banner or interstitial advertisements. Google AdMob may collect and use anonymous device identifiers and diagnostic data according to their own privacy standards.
+      </p>
+      <p>
+        You can read more about how Google processes data at: 
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy &amp; Terms</a>.
+      </p>
+
+      <h2>5. Children's Privacy</h2>
+      <p>
+        Our application does not address anyone under the age of 13 knowingly, nor do we collect any personal information from children.
+      </p>
+
+      <h2>6. Security</h2>
+      <p>
+        Because we do not maintain remote user databases or collect personal information, there is no personal user data stored on any server that could be compromised.
+      </p>
+
+      <h2>7. Changes to This Privacy Policy</h2>
+      <p>
+        We may update our Privacy Policy periodically. Any changes will be posted on this page with an updated date.
+      </p>
+
+      <h2>8. Contact Us</h2>
+      <p>
+        If you have any questions or feedback regarding this Privacy Policy, please contact:
+      </p>
+      <p>
+        <strong>Developer:</strong> Momen Salman<br />
+        <strong>Email:</strong> <a href="mailto:momensalman.dev@gmail.com">momensalman.dev@gmail.com</a>
+      </p>
+    </div>
+
+    <!-- ARABIC SECTION -->
+    <div id="lang-ar" class="lang-section rtl">
+      <div class="header">
+        <span class="app-badge">Arduino Bluetooth Car (RC)</span>
+        <h1>سياسة الخصوصية</h1>
+        <p class="updated-date">آخر تحديث: 1 أكتوبر 2026</p>
+      </div>
+
+      <div class="highlight-box">
+        <strong>خلاصة موجزة:</strong> تم تصميم تطبيق <strong>Arduino Bluetooth Car (RC)</strong> بأعلى معايير حماية الخصوصية. 
+        نحن <strong>لا نجمع</strong> أو نخزن أو نشارك أي بيانات شخصية على الإطلاق. تتم جميع اتصالات البلوتوث محلياً فقط وبشكل مباشر بين هاتفك ومتحكم الأردوينو/الروبوت الخاص بك.
+      </div>
+
+      <h2>1. مقدمة</h2>
+      <p>
+        توضح سياسة الخصوصية هذه كيفية التعامل مع البيانات فيما يتعلق بتطبيق الهاتف 
+        <strong>Arduino Bluetooth Car (RC)</strong> (معرف التطبيق: <code>com.rccontroller.rc_controller</code>) المطوَّر بواسطة <strong>مؤمن سلمان</strong>.
+      </p>
+
+      <h2>2. جمع البيانات وتخزينها</h2>
+      <p>
+        التطبيق <strong>لا يجمع أو يخزن أو يرسل</strong> أي بيانات شخصية للمستخدم. لا يتطلب التطبيق إنشاء حساب أو تسجيل دخول أو إدخال أي معلومات شخصية لاستخدامه.
+      </p>
+
+      <h2>3. أذونات الجهاز وسبب استخدامها</h2>
+      <p>لتشغيل التطبيق كجهاز تحكم عن بعد لمشاريع الروبوتات والأنظمة المدمجة، يحتاج التطبيق إلى الأذونات التالية:</p>
+      <ul>
+        <li>
+          <strong>أذونات البلوتوث (Bluetooth):</strong><br />
+          تُستخدم حصرياً للبحث عن وحدات البلوتوث (مثل HC-05 و HC-06 و ESP32) والاتصال بها وإرسال أوامر التحكم التسلسلية (حركة، توجيه، سرعة). لا تغادر هذه البيانات نطاق البلوتوث المحلي لجهازك أبداً.
+        </li>
+        <li>
+          <strong>إذن الموقع الجغرافي (على أندرويد 11 وما قبله):</strong><br />
+          تفرض شركة Google في إصدارات أندرويد القديمة منح إذن الموقع لإمكانية البحث عن أجهزة البلوتوث القريبة. <strong>تطبيقنا لا يقوم بتحديد أو تتبع أو حفظ أو مشاركة موقعك الجغرافي بأي شكل من الأشكال.</strong>
+        </li>
+        <li>
+          <strong>إذن الإنترنت وحالة الشبكة:</strong><br />
+          يُستخدم فقط للتحقق من الاتصال بالشبكة وعرض الإعلانات الخفيفة لدعم تطوير التطبيق.
+        </li>
+      </ul>
+
+      <h2>4. خدمات الطرف الثالث والإعلانات</h2>
+      <p>
+        قد يحتوي التطبيق على خدمات إعلانية مثل Google AdMob، والتي قد تجمع معلومات تشخيصية مجهولة الهوية وفقاً لسياسات الخصوصية المعتمدة من Google.
+        لمزيد من التفاصيل، يمكنك مراجعة: 
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">سياسة خصوصية Google</a>.
+      </p>
+
+      <h2>5. خصوصية الأطفال</h2>
+      <p>
+        لا نقوم بجمع أي معلومات شخصية من الأطفال دون سن 13 عاماً، والتطبيق آمن تماماً للاستخدام التعليمي والهواة.
+      </p>
+
+      <h2>6. أمان البيانات</h2>
+      <p>
+        نظراً لأننا لا نحتفظ بأي خوادم خارجية ولا نجمع أي بيانات تعريفية للمستخدم، فلا توجد بيانات شخصية معرضة للمخاطر.
+      </p>
+
+      <h2>7. التواصل معنا</h2>
+      <p>
+        لأي استفسارات بخصوص سياسة الخصوصية، يمكنك التواصل مباشرة عبر البريد الإلكتروني:
+      </p>
+      <p>
+        <strong>المطور:</strong> مؤمن سلمان (Momen Salman)<br />
+        <strong>البريد الإلكتروني:</strong> <a href="mailto:momensalman.dev@gmail.com">momensalman.dev@gmail.com</a>
+      </p>
+    </div>
+
+    <footer>
+      &copy; 2026 Arduino Bluetooth Car (RC) &bull; Developed by Momen Salman. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    function switchLang(lang) {
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.lang-section').forEach(sec => sec.classList.remove('active'));
+      
+      if (lang === 'ar') {
+        document.querySelectorAll('.lang-btn')[1].classList.add('active');
+        document.getElementById('lang-ar').classList.add('active');
+      } else {
+        document.querySelectorAll('.lang-btn')[0].classList.add('active');
+        document.getElementById('lang-en').classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>
